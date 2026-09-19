@@ -3,273 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لشوشو 💜</title>
+<title>رسالة لشوشو 💜</title>
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Tahoma,sans-serif;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-background:linear-gradient(180deg,#2a1038,#4a1d5c,#6b2d7c,#2a1038);
-color:white;
-overflow-x:hidden;
-min-height:100vh;
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:Tahoma, Arial, sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(180,120,255,.18), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(255,120,220,.12), transparent 30%),
+        linear-gradient(135deg,#10051c,#241039,#12051f);
+    color:white;
 }
 
-#flowers{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-pointer-events:none;
-overflow:hidden;
-z-index:1;
+/* طبقة اللمعات */
+.glow{
+    position:fixed;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:rgba(255,255,255,.8);
+    box-shadow:0 0 15px #fff,0 0 25px #d7aaff;
+    animation:twinkle 3s infinite ease-in-out;
+    z-index:0;
 }
 
+@keyframes twinkle{
+    0%,100%{opacity:.15;transform:scale(.7)}
+    50%{opacity:1;transform:scale(1.4)}
+}
+
+/* الورد النازل */
 .flower{
-position:absolute;
-top:-100px;
-animation:fall linear forwards;
-opacity:.9;
+    position:fixed;
+    top:-60px;
+    z-index:5;
+    pointer-events:none;
+    font-size:25px;
+    opacity:.85;
+    animation:fall linear forwards;
 }
 
 @keyframes fall{
-0%{
-transform:translateY(-100px) rotate(0deg);
-opacity:0;
-}
-10%{
-opacity:1;
-}
-100%{
-transform:translateY(110vh) rotate(360deg);
-opacity:.2;
-}
+    0%{
+        transform:translateY(-60px) rotate(0deg);
+        opacity:0;
+    }
+    10%{
+        opacity:.9;
+    }
+    50%{
+        transform:translateY(50vh) translateX(35px) rotate(180deg);
+    }
+    100%{
+        transform:translateY(110vh) translateX(-35px) rotate(360deg);
+        opacity:0;
+    }
 }
 
-.container{
-position:relative;
-z-index:5;
-padding:30px 15px;
-display:flex;
-justify-content:center;
+/* الشاشة الأولى */
+.welcome{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:20;
+    background:rgba(12,3,22,.93);
+    transition:1s ease;
+}
+
+.welcome.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+.welcome-box{
+    width:min(420px,100%);
+    padding:35px 25px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:30px;
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(18px);
+    box-shadow:0 0 40px rgba(180,100,255,.18);
+}
+
+.welcome-box h1{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.welcome-box p{
+    color:#ddd;
+    line-height:2;
+    margin-bottom:25px;
+}
+
+.start{
+    border:0;
+    padding:14px 35px;
+    border-radius:50px;
+    color:white;
+    background:linear-gradient(135deg,#9b55d9,#d17be9);
+    font-size:17px;
+    cursor:pointer;
+    box-shadow:0 0 25px rgba(205,130,255,.35);
+}
+
+/* المحتوى */
+.main{
+    position:relative;
+    z-index:3;
+    width:min(650px,92%);
+    margin:auto;
+    padding:45px 0 80px;
 }
 
 .card{
-width:100%;
-max-width:850px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(12px);
-border-radius:30px;
-padding:30px;
-box-shadow:0 0 40px rgba(255,255,255,.15);
-animation:show 1.5s ease;
+    padding:28px 22px;
+    border-radius:30px;
+    background:rgba(255,255,255,.075);
+    border:1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(16px);
+    box-shadow:0 15px 50px rgba(0,0,0,.3);
+    text-align:center;
 }
 
-@keyframes show{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+.title{
+    font-size:28px;
+    margin-bottom:12px;
 }
 
-h1{
-text-align:center;
-margin-bottom:25px;
-color:#ffd7ff;
+.subtitle{
+    color:#d9cbe5;
+    line-height:1.9;
+    margin-bottom:25px;
 }
 
 .photo{
-width:260px;
-height:260px;
-border-radius:25px;
-object-fit:cover;
-display:block;
-margin:20px auto;
-border:4px solid rgba(255,255,255,.25);
+    width:100%;
+    max-height:430px;
+    object-fit:cover;
+    border-radius:22px;
+    display:block;
+    margin:20px auto;
+    box-shadow:0 0 30px rgba(190,120,255,.22);
+    transition:.7s;
 }
 
-.text{
-line-height:2.2;
-font-size:20px;
-text-align:center;
+.message{
+    text-align:right;
+    line-height:2.2;
+    color:#f5eef9;
+    font-size:17px;
+    white-space:pre-line;
 }
 
-.end{
-margin-top:30px;
-font-size:28px;
-text-align:center;
-}
-</style>
-</head>
-
-<body>
-
-<div id="flowers"></div>
-
-<div class="container">
-
-<div class="card">
-
-<h1>💜 كل سنة وإنتِ بخير يا شوشو 🌷</h1>
-
-<!-- حطي صورة شوشو هنا -->
-<img src="photo1.jpg" class="photo">
-
-<div class="text">
-
-يا شوشو ❤️
-
-<br><br>
-
-ممكن أكون مش عارف كل اللي جواكي،
-وممكن يكون فيه حاجات عمرك ما حكيتيها لحد،
-بس أنا شايف إنك متعبة.
-
-<br><br>
-
-شايف إن فيه أيام بتعدي عليكي وانتي بتضحكي قدام الناس،
-وفي نفس الوقت جواكي ألف حاجة بتوجعك.
-
-<br><br>
-
-وشايف إنك ساعات بتقولي "أنا كويسة"
-لمجرد إنك مش عاوزة تتعبي حد معاكي،
-مع إن اللي جواكي أكبر بكتير من الكلمتين دول.
-
-<br><br>
-
-عارفة أكتر حاجة بتضايقني؟
-
-<br><br>
-
-إني لما أشوفك مخنوقة أو مهمومة
-مبعرفش أشيل التعب من قلبك بإيدي.
-
-<br><br>
-
-نفسي أقدر أخد عنك شوية من الحمل اللي فوق كتافك.
-
-<br><br>
-
-نفسي أقدر أوقف أي حاجة بتزعلك.
-
-<br><br>
-
-نفسي أقدر أرجعلك الأيام اللي ضحكتي فيها من قلبك
-من غير تفكير ومن غير وجع.
-
-<br><br>
-
-أنا فاكر ضحكتك...
-
-<br><br>
-
-وفاكر طريقتك لما تكوني مبسوطة.
-
-<br><br>
-
-وفاكر قد إيه كان فيكي روح خفيفة وحلوة.
-
-<br><br>
-
-وعشان كده كل ما أشوفك تعبانة،
-بزعل عشان عارف إن جواكي نسخة جميلة من شوشو
-تستحق ترتاح وتفرح وتعيش من غير كل الضغط ده.
-
-<br><br>
-
-مش بطلب منك تبقي قوية طول الوقت.
-
-<br><br>
-
-ومش بطلب منك تخبي زعلك.
-
-<br><br>
-
-ولو جه يوم ومكنش عندك طاقة للكلام،
-أو حتى للضحك،
-فده عادي.
-
-<br><br>
-
-بس متنسيش إنك شخص غالي جدًا.
-
-<br><br>
-
-ومتنسيش إن وجودك بيفرق أكتر ما انتي متخيلة.
-
-<br><br>
-
-وأتمنى من قلبي إن الأيام الجاية تكون أهدى عليكي،
-وإن ربنا يعوض قلبك عن كل لحظة تعب وكل خنقة وكل دمعة خبّيتيها جواكي.
-
-<br><br>
-
-ولو الدنيا كلها كانت تقيلة عليكي...
-
-<br><br>
-
-أتمنى تحسي إن فيه حد بيتمنى لك الراحة من قلبه،
-وبيفرح لما يلاقيك بخير.
-
-</div>
-
-<div class="end">
-💜 🌷 🪻 🌷 💜
-</div>
-
-</div>
-
-</div>
-
-<script>
-const flowers=document.getElementById("flowers");
-
-function createFlower(){
-
-const flower=document.createElement("div");
-
-flower.classList.add("flower");
-
-const items=[
-"🌷",
-"🪻",
-"💜",
-"🌸",
-"🌺"
-];
-
-flower.innerHTML=
-items[Math.floor(Math.random()*items.length)];
-
-flower.style.left=
-Math.random()*100+"vw";
-
-flower.style.fontSize=
-(20+Math.random()*40)+"px";
-
-flower.style.animationDuration=
-(8+Math.random()*10)+"s";
-
-flowers.appendChild(flower);
-
-setTimeout(()=>{
-flower.remove();
-},18000);
+.message-section{
+    display:none;
+    animation:show .8s ease;
 }
 
-setInterval(createFlower,250);
-</script>
+.message-section.active{
+    display:block;
+}
 
-</body>
-</html>
+@keyframes show{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.next{
+    margin-top:25px;
+    padding:12px 30px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:50px;
+    color:white;
+    background:rgba(160,90,210,.25);
+    cursor:pointer;
+    font-size:16px;
+}
+
+.music{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    z-index:15;
+    width:52px;
+    height:52px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:50%;
+    background:rgba(100,45,130,.75);
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 0 20px rgba(190,110,255,.3);
+}
+
+.final-photos{
+    display:grid;
+    grid-template
